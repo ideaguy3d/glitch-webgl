@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Muriel Cooper</title>
+    <meta name="description" content="Hello, WebVR! - A-Frame">
+    <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <script>
+      // Get JSON Data from API URI. 10 posts will be returned by default.
+      $.getJSON("https://markuraine.com/wp-json/wp/v2/posts/402", function(data) {
+        
+        // Loop through each object.
+        $.each(data, function(i,post){
+
+          // Post Title.
+          var title = data.title.rendered;
+
+          // Post Content.
+          var content = $(data.content.rendered).text();
+
+          $("#title").attr("text", "value:" + title);
+          $("#title-red").attr("text", "value:" + title);
+          $("#title-blue").attr("text", "value:" + title);
+          
+          $("#content").attr("text", "value:" + content);
+        
+          var paragraph = content.split("\n");
+          for(var x in paragraph){   
+              paragraph[x]= '>'+paragraph[x]; 
+          }
+        
+          $("#paragraph0").attr("text", "value:" + paragraph[0]);
+          $("#paragraph1").attr("text", "value:" + paragraph[1]);
+          $("#paragraph2").attr("text", "value:" + paragraph[2]);
+          $("#paragraph3").attr("text", "value:" + paragraph[3]);
+          $("#paragraph4").attr("text", "value:" + paragraph[4]);
+          $("#paragraph5").attr("text", "value:" + paragraph[5]);
+          $("#paragraph6").attr("text", "value:" + paragraph[6]);
+          $("#paragraph7").attr("text", "value:" + paragraph[7]);
+          $("#paragraph8").attr("text", "value:" + paragraph[8]);
+          $("#paragraph9").attr("text", "value:" + paragraph[9]);
+          $("#paragraph10").attr("text", "value:" + paragraph[10]);
+          $("#paragraph11").attr("text", "value:" + paragraph[11]);
+          $("#paragraph12").attr("text", "value:" + paragraph[12]);
+        
+        });
+      });
+    
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="muriel" src="https://cdn.glitch.com/22354258-bb32-4ff6-b769-aac618140f80%2Fmuriel-1.jpg?1516038838499">
+        <img id="3d-text" src="https://cdn.glitch.com/22354258-bb32-4ff6-b769-aac618140f80%2Fmuriel-2.jpg?1516038838633">
+      </a-assets>
+      
+      <!-- Title -->
+      <a-entity position="-0.35 1.998 0.8" rotation="0 0 -90" text="color:red; opacity:0.7" id="title-red"></a-entity>
+      <a-entity position="-0.35 2.002 0.8" rotation="0 0 -90" text="color:blue; opacity:0.7" id="title-blue"></a-entity>
+      <a-entity position="-0.35 2 0.8" rotation="0 0 -90" text="color:white; opacity:0.6" id="title">
+        <a-animation attribute="position" to="-0.35 2 0.8" direction="alternate" dur="100" repeat="infinite"></a-animation>
+      </a-entity>
+      
+      <!-- Full content -->
+      <a-entity position="3.2 6 -6" id="content"></a-entity>
+      
+      
+      <a-image id="muriel-self-portrait" position="-5 3.2 -8" rotation="0 45 0" src="#muriel" width="5" height="4"></a-image>
+      
+      
+      <a-entity position="0 2.15 0" rotation="0 0 0" id="paragraph0"></a-entity>
+      
+      <!--a-entity position="0.6 2 1" rotation="0 -60 0" id="paragraph1"></a-entity--> <!-- Image -->
+      
+      <a-entity position="0.7 2 1" rotation="0 -45 0" id="paragraph2"></a-entity>
+      <a-entity position="0.7 1.7 1" rotation="-45 -45 0" text="opacity:0.7" id="paragraph3"></a-entity> <!-- Quote -->
+      
+      <a-entity position="1 1.8 2" rotation="0 -90 0" id="paragraph4"></a-entity>
+      <a-entity position="1 1.6 2" rotation="-45 -90 0" text="opacity:0.7" id="paragraph5"></a-entity> <!-- Quote -->
+      
+      <a-entity position="1 2 3" rotation="0 -145 0" id="paragraph7"></a-entity>
+      <a-image id="muriel-text" position="1 2.5 4" rotation="0 -145 0" src="#3d-text" width="1.5" height="0.8"></a-image>
+      
+      <a-entity position="0 1.8 3.2" rotation="0 -190 0" id="paragraph8"></a-entity>
+      
+      <a-entity position="-1 2 3" rotation="0 -235 0" id="paragraph9"></a-entity>
+      <a-entity position="-1 1.75 3" rotation="-45 -235 0" text="opacity:0.7" id="paragraph10"></a-entity> <!-- Quote -->
+      
+      <a-entity position="-1 2 2" rotation="0 -280 0" id="paragraph11"></a-entity>
+      
+      <a-entity position="-0.7 1.8 1.5" rotation="0 90 0" id="paragraph12"></a-entity>
+      
+    
+      
+      <!--a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#47416f"></a-plane-->
+      <!--a-sky color="#9588EA"></a-sky-->
+      
+      <a-entity environment="preset: tron; numDressing: 500"></a-entity>
+      
+      <a-entity position="0 1.8 2">
+        <a-entity camera look-controls wasd-controls></a-entity>
+      </a-entity>
+      
+      <!--a-camera>
+        <a-cursor></a-cursor>
+      </a-camera-->
+    </a-scene>
+  </body>
+</html>
